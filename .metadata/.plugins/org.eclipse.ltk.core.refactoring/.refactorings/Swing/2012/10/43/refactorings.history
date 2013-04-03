@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;TestFrame.FontPosition&apos; to &apos;FontFrame&apos;&#x0D;&#x0A;- Original project: &apos;Swing&apos;&#x0D;&#x0A;- Original element: &apos;TestFrame.FontPosition&apos;&#x0D;&#x0A;- Renamed element: &apos;TestFrame.FontFrame&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;FontPosition&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;TestFrame{FontPosition.java[FontPosition" matchStrategy="1" name="FontFrame" qualified="false" references="true" similarDeclarations="false" stamp="1351149148270" textual="false" version="1.0"/>
+</session>

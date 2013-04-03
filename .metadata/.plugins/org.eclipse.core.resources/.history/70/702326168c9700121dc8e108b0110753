@@ -1,0 +1,25 @@
+package com.study.jxl;
+
+import java.io.File;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class ReadHtml {
+public static void main(String[] args){
+	try{
+	File input = new File("D:/posttest.txt");
+	Document doc = Jsoup.parse(input, "UTF-8");
+
+	Elements links = doc.getElementsByAttributeValue("name", "y_content");
+	for (Element link : links) {
+	  String linkName = link.attr("value");
+	  System.out.println(linkName);
+	}	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+}
+}

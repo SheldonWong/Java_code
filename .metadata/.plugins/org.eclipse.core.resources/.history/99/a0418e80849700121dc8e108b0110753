@@ -1,0 +1,16 @@
+package study.openUrl;
+
+public class Test {
+public static void main(String[] args){
+	String str1 = "&eacute;&eacute;&eacute;&eacute;";
+    
+    String[] str= str1.split(";");
+    
+    String sResult = "";
+    for (int i = 0; i < str.length; i++) {
+        int str2 = Integer.parseInt(str[i].replace("&#", ""));
+        sResult += ""+(char)str2;
+    }
+    System.out.println(sResult);
+}
+}

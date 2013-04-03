@@ -1,0 +1,43 @@
+package com.study.jxl;
+
+import java.io.File;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class ReadHtml {
+public static void main(String[] args){
+	try{
+	//create xml
+		Element xmlRoot ;
+		doc = new Document();
+		stuRoot = new Element("class");
+		doc.setRootElement(stuRoot);
+		
+		
+	//read html	
+	File input = new File("D:/posttest.txt");
+	Document doc = Jsoup.parse(input, "UTF-8");
+	Elements links = doc.getElementsByAttribute("onmouseover");
+	for (Element link : links) {
+		Elements subLinks = link.children();
+		Element el_id = subLinks.first();
+		Element el_title = el_id.nextElementSibling();
+		Element el_content_all = el_title.nextElementSibling();
+		Element el_grade = el_content_all.getElementById("grade");
+		Element el_subject = el_content_all.getElementById("subject");
+		Element el_content = el_content_all.getElementsByAttributeValue("name", "y_content").first();
+		Element el_date = el_content_all.nextElementSibling();
+	  System.out.println(el_date.text());
+	  System.out.println(el_title.text());
+	  System.out.println(el_grade.val());
+	  System.out.println(el_subject.val());
+	  System.out.println(el_content.text());
+	}	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+}
+}

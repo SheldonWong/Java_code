@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/mylist"
+        android:background="@drawable/white"
+        android:persistentDrawingCache="animation|scrolling"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutAnimation="@anim/layout_top_to_bottom" 
+        />
+    <LinearLayout 
+        android:id="@+id/mainContent"
+        android:orientation="vertical"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:visibility="gone">
+	    <LinearLayout 
+			    android:id="@+id/navigate"
+			    android:orientation="horizontal"
+			    android:background="@drawable/gray"
+			    android:layout_width="match_parent"
+	     		android:layout_height="wrap_content">
+			    <Button
+        	 	android:id="@+id/button"
+        	 	android:text="返回"
+        	 	android:layout_width="wrap_content"
+        	 	android:layout_height="wrap_content" />
+			</LinearLayout>
+        <ScrollView 
+         android:id="@+id/scrollContent"
+         android:background="@drawable/white"
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent">
+			
+			
+	    	<LinearLayout	        
+	    	android:id="@+id/contentView"
+	        android:orientation="vertical"
+	        android:layout_width="match_parent"
+	    	android:layout_height="match_parent">
+	    	
+	        <TextView 
+	         android:id="@+id/myTitle"
+	         android:gravity="center_horizontal"
+	         android:textColor="@drawable/character_color"
+	         android:textSize="25sp"
+	         android:layout_width="match_parent"
+	    	 android:layout_height="wrap_content" />
+	    	<TextView 
+	    	 android:id="@+id/myContent"
+	    	 android:textColor="@drawable/character_color"
+	    	 android:textSize="18sp"
+	         android:layout_width="match_parent"
+	    	 android:layout_height="wrap_content"
+	         />
+	    	</LinearLayout>
+	</ScrollView>
+    </LinearLayout>
+	
+	    
+	    
+
+
+</LinearLayout>

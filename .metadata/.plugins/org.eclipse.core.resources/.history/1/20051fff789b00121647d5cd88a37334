@@ -1,0 +1,62 @@
+package com.study.jxl;
+
+import java.io.File;
+
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class ReadHtml {
+public static void main(String[] args){
+	try{
+	//	create excel
+		WritableWorkbook book = Workbook.createWorkbook(new File("D:/test.xls"));
+		WritableSheet sheet = book.createSheet("知识点", 0);
+		
+		
+	//read html	
+	File input = new File("D:/posttest.txt");
+	Document doc = Jsoup.parse(input, "UTF-8");
+	Elements links = doc.getElementsByAttribute("onmouseover");
+	int i=0;
+	for (Element link : links) {
+		Elements subLinks = link.children();
+		Element el_id = subLinks.first();
+		Element el_title = el_id.nextElementSibling();
+		Element el_content_all = el_title.nextElementSibling();
+		Element el_grade = el_content_all.getElementById("grade");
+		Element el_subject = el_content_all.getElementById("subject");
+		Element el_content = el_content_all.getElementsByAttributeValue("name", "y_content").first();
+		Element el_date = el_content_all.nextElementSibling();
+		
+		//write excel
+		Label label_date = new Label(i, 0,el_date.text());
+		Label label_title = new Label(i, 1,el_title.text());
+		Label label_grade = new Label(i, 2,el_grade.val());
+		Label label_subject = new Label(i, 3,el_subject.val());
+		Label label_content = new Label(i, 4,el_content.text());
+		sheet.addCell(label_date);
+		sheet.addCell(label_title);
+		sheet.addCell(label_grade);
+		sheet.addCell(label_subject);
+		sheet.addCell(label_content);
+		
+		i++;
+		
+	  System.out.println(el_date.text());
+	  System.out.println(el_title.text());
+	  System.out.println(el_grade.val());
+	  System.out.println(el_subject.val());
+	  System.out.println(el_content.text());
+	}	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+}
+}

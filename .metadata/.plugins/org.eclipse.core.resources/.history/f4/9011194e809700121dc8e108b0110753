@@ -1,0 +1,79 @@
+package study.openUrl;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+
+class PostQuery{
+	
+	public static String convertStreamToString(InputStream is) {    
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));    
+        StringBuilder sb = new StringBuilder();    
+     
+        String line = null;    
+        try {    
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");    
+            }    
+        } catch (IOException e) {    
+            e.printStackTrace();    
+        } finally {    
+            try {    
+                is.close();    
+            } catch (IOException e) {    
+               e.printStackTrace();    
+            }    
+        }    
+        return sb.toString();    
+    }
+	public static void main(String[] args) throws Exception{
+	DefaultHttpClient httpclient = new DefaultHttpClient();
+	HttpHost target = new HttpHost("183.60.52.75", 80, "http");
+	HttpPost httpPost = new HttpPost("/login.php");
+	List <NameValuePair> nvps = new ArrayList <NameValuePair>();
+    nvps.add(new BasicNameValuePair("username", "content_checker"));
+    nvps.add(new BasicNameValuePair("password", "sup#n860"));
+    nvps.add(new BasicNameValuePair("x","40"));
+    nvps.add(new BasicNameValuePair("y","10"));
+    httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+    HttpResponse response1 = httpclient.execute(target,httpPost);
+    httpPost.releaseConnection();
+    httpPost = new HttpPost("//articleQuery.php?category=311");
+    HttpResponse response2 = httpclient.execute(target,httpPost);
+    try {
+    	String responseString = EntityUtils.toString(response1.getEntity()); 
+        System.out.println(responseString); 
+        System.out.println(response1.getStatusLine());
+        HttpEntity entity1 = response1.getEntity();
+        // do something useful with the response body
+        // and ensure it is fully consumed
+        if (entity1 != null) {     
+           InputStream instreams = entity1.getContent();     
+            String str = convertStreamToString(instreams);   
+            System.out.println("Do something");    
+           System.out.println(str);   
+          // Do not need the rest     
+           httpgets.abort();     
+       } 
+        EntityUtils.consume(entity2);
+        System.out.println(response1);
+        System.out.println(response2);
+    } finally {
+    	httpclient.getConnectionManager().shutdown();
+    }
+	}
+}

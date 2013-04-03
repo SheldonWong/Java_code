@@ -1,0 +1,1 @@
+{"Mobile":"13899668673","QueryResult":"True","Province":"新疆","City":"昌吉","AreaCode":"0994","PostCode":"831100","Corp":"中国移动","Card":"GSM"}
